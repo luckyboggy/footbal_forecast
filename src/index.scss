@@ -1,5 +1,6 @@
 $backColor: darkslateblue;
 $groupTitleColor: crimson;
+$groupTitleTextColor: white;
 
 * {
   margin: 0;
@@ -16,10 +17,23 @@ li {
   list-style-type: none;
 }
 
-.next_btn {
-  padding: 0.5rem;
-  margin: auto;
-  border-radius: 10px;
+.groupStage {
   text-align: center;
-  background-color: $groupTitleColor;
+  .groupStage__content {
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 1200px;
+  }
+  .groupStage__nextBtn {
+    margin: 10px auto;
+    padding: 0.5rem 1.5rem; 
+    border-radius: 10px;
+    text-align: center;
+    background-color: $groupTitleColor;
+    color: $groupTitleTextColor;
+    border: 0;
+    font-size: 1.5rem;
+  }
 }

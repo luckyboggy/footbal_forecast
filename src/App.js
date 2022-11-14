@@ -96,12 +96,21 @@ function App() {
   return (
     <div className="App">
       <div className="groupStage">
-        <Group groupName={"A"} group={groupA} setGroup={setGroupA} />
-        <Group groupName={"B"} group={groupB} setGroup={setGroupB} />
-        <Group groupName={"C"} group={groupC} setGroup={setGroupC} />
-        <Group groupName={"D"} group={groupD} setGroup={setGroupD} />
+        <div className="groupStage__header"></div>
+        <div className="groupStage__content">
+          <Group groupName={"A"} group={groupA} setGroup={setGroupA} />
+          <Group groupName={"B"} group={groupB} setGroup={setGroupB} />
+          <Group groupName={"C"} group={groupC} setGroup={setGroupC} />
+          <Group groupName={"D"} group={groupD} setGroup={setGroupD} />
+          <Group groupName={"A"} group={groupA} setGroup={setGroupA} />
+          <Group groupName={"B"} group={groupB} setGroup={setGroupB} />
+          <Group groupName={"C"} group={groupC} setGroup={setGroupC} />
+          <Group groupName={"D"} group={groupD} setGroup={setGroupD} />
+
+        </div>
+        <button className="groupStage__nextBtn">Следующий этап</button>
       </div>
-      <button className="next_btn">Следующий этап</button>
+
     </div>
   );
 }
