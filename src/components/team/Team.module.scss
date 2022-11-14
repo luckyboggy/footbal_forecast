@@ -1,16 +1,21 @@
+$groupBackColor: beige;
+$itemBorderColor: #808080;
+
 .team {
   width: 80%;
   padding: 0.5rem;
   margin: 15px auto;
   border-radius: 10px;
-  border: 1px solid #808080;
+  border: 1px solid $itemBorderColor;
   text-align: center;
+  background-color: $groupBackColor;
   &:hover {
     cursor: grab;
+    box-shadow: 3px 3px 5px 1px rgba(0, 0, 0, 0.5);
   }
   &:active {
     cursor: grabbing;
-    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.5);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
   }
 
   .team__flag {

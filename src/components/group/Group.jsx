@@ -1,35 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { Reorder } from "framer-motion";
 import classes from "./Group.module.scss";
 import Team from "../team/Team";
 
-const Group = () => {
-  const [group, setGroup] = useState([
-    {
-      id: 1,
-      team: "Катар",
-      flag: "https://www.megaflag.ru/sites/default/files/images/shop/products/flag_katar_new.jpg",
-    },
-    {
-      id: 2,
-      team: "Эквадор",
-      flag: "https://www.megaflag.ru/sites/default/files/images/shop/products/flag_ekvador_new.jpg",
-    },
-    {
-      id: 3,
-      team: "Сенегал",
-      flag: "https://www.megaflag.ru/sites/default/files/images/directory_names/flag_senegal_enl.jpg",
-    },
-    {
-      id: 4,
-      team: "Нидерланды",
-      flag: "https://www.megaflag.ru/sites/default/files/images/directory_names/flag_niderlandy_enl.jpg",
-    },
-  ]);
+const Group = (props) => {
+  const { groupName, group, setGroup } = props;
 
   return (
     <div className={classes.group}>
-      <div className={classes.header}>Group A</div>
+      <div className={classes.header}>Group {groupName}</div>
       <Reorder.Group
         axis="y"
         values={group}
