@@ -92,24 +92,64 @@ function App() {
     },
   ]);
 
+  const [stage, setStage] = useState('group');
+
+
+  const toRoundOf16 = () => {
+    setStage('round of 16');
+  }
+
+  const toQuarterfinals = () => {
+    setStage('quarterfinals');
+  }
+
+  const toSemifinals = () => {
+    setStage('semifinals');
+  }
+
+  const toThirdPlace = () => {
+    setStage('third place');
+  }
+
+  const toFinal = () => {
+    setStage('final');
+  }
+
+
 
   return (
     <div className="App">
-      <div className="groupStage">
-        <div className="groupStage__header"></div>
-        <div className="groupStage__content">
-          <Group groupName={"A"} group={groupA} setGroup={setGroupA} />
-          <Group groupName={"B"} group={groupB} setGroup={setGroupB} />
-          <Group groupName={"C"} group={groupC} setGroup={setGroupC} />
-          <Group groupName={"D"} group={groupD} setGroup={setGroupD} />
-          <Group groupName={"A"} group={groupA} setGroup={setGroupA} />
-          <Group groupName={"B"} group={groupB} setGroup={setGroupB} />
-          <Group groupName={"C"} group={groupC} setGroup={setGroupC} />
-          <Group groupName={"D"} group={groupD} setGroup={setGroupD} />
-
+      {
+        (stage === 'group') && <div className="groupStage">
+          <div className="groupStage__header"></div>
+          <div className="groupStage__content">
+            <Group groupName={"A"} group={groupA} setGroup={setGroupA} />
+            <Group groupName={"B"} group={groupB} setGroup={setGroupB} />
+            <Group groupName={"C"} group={groupC} setGroup={setGroupC} />
+            <Group groupName={"D"} group={groupD} setGroup={setGroupD} />
+            <Group groupName={"A"} group={groupA} setGroup={setGroupA} />
+            <Group groupName={"B"} group={groupB} setGroup={setGroupB} />
+            <Group groupName={"C"} group={groupC} setGroup={setGroupC} />
+            <Group groupName={"D"} group={groupD} setGroup={setGroupD} />
+          </div>
+          <button className="nextStageBtn" onClick={toRoundOf16}>Следующий этап</button>
         </div>
-        <button className="groupStage__nextBtn">Следующий этап</button>
-      </div>
+      }
+      {
+        (stage === 'round of 16') && <div className="roundOfSixteen">Round of sixteen</div>
+      }
+      {
+        (stage === 'quarterfinals') && <div className="quarterfinals">Quarterfinals</div>
+      }
+      {
+        (stage === 'semifinals') && <div className="semifinals">Semifinals</div>
+      }
+      {
+        (stage === 'third place') && <div className="thirdPlace">Third place</div>
+      }
+      {
+        (stage === 'final') && <div className="final">Final</div>
+      }
 
     </div>
   );

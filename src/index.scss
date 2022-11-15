@@ -26,14 +26,15 @@ li {
     flex-wrap: wrap;
     max-width: 1200px;
   }
-  .groupStage__nextBtn {
-    margin: 10px auto;
-    padding: 0.5rem 1.5rem; 
-    border-radius: 10px;
-    text-align: center;
-    background-color: $groupTitleColor;
-    color: $groupTitleTextColor;
-    border: 0;
-    font-size: 1.5rem;
-  }
+}
+
+.nextStageBtn {
+  margin: 10px auto;
+  padding: 0.5rem 1.5rem; 
+  border-radius: 10px;
+  text-align: center;
+  background-color: $groupTitleColor;
+  color: $groupTitleTextColor;
+  border: 0;
+  font-size: 1.5rem;
 }
