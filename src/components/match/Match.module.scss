@@ -1,0 +1,23 @@
+$groupBackColor: beige;
+$groupTitleColor: crimson;
+$groupTitleTextColor: white;
+
+.match {
+  /* height: 350px; */
+  width: 250px;
+  background-color: $groupBackColor;
+  margin: 1rem;
+  border-radius: 15px;
+  padding-bottom: 10px;
+
+  .header {
+    text-align: center;
+    padding: 0.5rem;
+    border-radius: 15px 15px 0 0;
+    background-color: $groupTitleColor;
+    color: $groupTitleTextColor;
+    font-size: 1.5rem;
+  }
+  .content {
+  }
+}

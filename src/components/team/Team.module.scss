@@ -2,7 +2,8 @@ $groupBackColor: beige;
 $itemBorderColor: #808080;
 
 .team {
-  width: 80%;
+  position: relative;
+  width: 85%;
   padding: 0.5rem;
   margin: 15px auto;
   border-radius: 10px;
@@ -19,8 +20,12 @@ $itemBorderColor: #808080;
   }
 
   .team__flag {
-    height: 30px;
-    width: 30px;
+    position: absolute;
+    left: 0.5rem;
+    top: 3px;
+    height: 28px;
+    width: 28px;
     border-radius: 15px;
+    box-shadow: 0px 0px 5px black;
   }
 }

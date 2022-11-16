@@ -1,6 +1,7 @@
 $backColor: darkslateblue;
 $groupTitleColor: crimson;
 $groupTitleTextColor: white;
+$prevStageBtn: #gray;
 
 * {
   margin: 0;
@@ -29,12 +30,35 @@ li {
 }
 
 .nextStageBtn {
+  width: 48%;
   margin: 10px auto;
-  padding: 0.5rem 1.5rem; 
+  padding: 1rem 0.5rem;
   border-radius: 10px;
   text-align: center;
   background-color: $groupTitleColor;
   color: $groupTitleTextColor;
   border: 0;
   font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.prevStageBtn {
+  width: 45%;
+  margin: 10px auto;
+  padding: 1rem 0.5rem;
+  border-radius: 10px;
+  text-align: center;
+  background-color: $prevStageBtn;
+  color: #black;
+  border: 0;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.roundOfSixteen {
+  .roundOfSixteen__buttons {
+    margin: auto;
+    text-align: center;
+    /* padding: 0 15px; */
+  }
 }

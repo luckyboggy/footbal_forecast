@@ -5,7 +5,7 @@ const Team = (props) => {
   const { team, flag } = props;
   return (
     <div className={classes.team} {...props}>
-      {/* <img src={flag} className={classes.team__flag}/> */}
+      <img src={flag} className={classes.team__flag} alt={team} />
       {team}
     </div>
   );
