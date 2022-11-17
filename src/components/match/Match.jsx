@@ -3,7 +3,7 @@ import Team from "../team/Team";
 import classes from "./Match.module.scss";
 
 const Match = (props) => {
-  const { match, matchIndex, chooseWinner, stage } = props;
+  const { match, matchIndex = 0, chooseWinner, stage } = props;
   return (
     <div>
       <div className={classes.match}>

@@ -188,8 +188,8 @@ function App() {
     roundOf16: [],
     quarterfinals: [[{}, {}], [{}, {}], [{}, {}], [{}, {}]],
     semifinals: [[{}, {}], [{}, {}]],
-    thirdPlace: [{}, {}],
-    final: [{}, {}],
+    thirdPlace: [[{}, {}]],
+    final: [[{}, {}]],
   })
 
 
@@ -211,7 +211,7 @@ function App() {
   const toQuarterfinals = () => {
     let winners = result.roundOf16.map(pair => {
       let win = pair.filter(i => i.win === 1);
-      return win
+      return win;
     })
     let _quarterfinals = [
       [{ ...winners[0][0], id: 0, win: 0 }, { ...winners[1][0], id: 1, win: 0 }],
@@ -225,7 +225,7 @@ function App() {
   const toSemifinals = () => {
     let winners = result.quarterfinals.map(pair => {
       let win = pair.filter(i => i.win === 1);
-      return win
+      return win;
     })
     let _semifinals = [
       [{ ...winners[0][0], id: 0, win: 0 }, { ...winners[1][0], id: 1, win: 0 }],
@@ -239,52 +239,76 @@ function App() {
       let lose = pair.filter(i => i.win === 0);
       return lose
     })
+    console.log('loserssss', losers);
     let _thirdPlace = [
       [{ ...losers[0][0], id: 0, win: 0 }, { ...losers[1][0], id: 1, win: 0 }],
     ]
-    setResult({ ...result, thirdPlace: _thirdPlace })
+    console.log('losers', _thirdPlace);
+    //setResult({...result, thirdPlace: _thirdPlace });
   }
 
   const toFinal = () => {
+    let losers = result.semifinals.map(pair => {
+      let lose = pair.filter(i => i.win === 0);
+      return lose
+    })
+    console.log('loserssss', losers);
+    let _thirdPlace = [
+      [{ ...losers[0][0], id: 0, win: 0 }, { ...losers[1][0], id: 1, win: 0 }],
+    ]
+    console.log('losers', _thirdPlace);
+    //setResult({ ...result, thirdPlace: _thirdPlace});
+
+
     let winners = result.semifinals.map(pair => {
       let win = pair.filter(i => i.win === 1);
       return win
     })
+    console.log(winners);
     let _final = [
       [{ ...winners[0][0], id: 0, win: 0 }, { ...winners[1][0], id: 1, win: 0 }],
     ]
-    setResult({ ...result, final: _final })
+    console.log('winners', _final);
+    setResult({ ...result, final: _final, thirdPlace: _thirdPlace });
+
   }
+
 
   const chooseWinner = (stage, matchWinner, winnerId) => {
     if (stage === 'sexteen') {
       result.roundOf16[matchWinner][0].win = 0;
-      result.roundOf16[matchWinner][0].win = 0;
+      result.roundOf16[matchWinner][1].win = 0;
       result.roundOf16[matchWinner][winnerId].win = 1;
       toQuarterfinals();
     }
     if (stage === 'qf') {
       result.quarterfinals[matchWinner][0].win = 0;
-      result.quarterfinals[matchWinner][0].win = 0;
+      result.quarterfinals[matchWinner][1].win = 0;
       result.quarterfinals[matchWinner][winnerId].win = 1;
       toSemifinals();
     }
     if (stage === 'sf') {
       result.semifinals[matchWinner][0].win = 0;
-      result.semifinals[matchWinner][0].win = 0;
+      result.semifinals[matchWinner][1].win = 0;
       result.semifinals[matchWinner][winnerId].win = 1;
-      toThirdPlace();
+      //toThirdPlace();
       toFinal();
+
     }
     if (stage === 'third') {
+
       result.thirdPlace[matchWinner][0].win = 0;
-      result.thirdPlace[matchWinner][0].win = 0;
+      result.thirdPlace[matchWinner][1].win = 0;
       result.thirdPlace[matchWinner][winnerId].win = 1;
+
+
     }
     if (stage === 'final') {
+
       result.final[matchWinner][0].win = 0;
-      result.final[matchWinner][0].win = 0;
+      result.final[matchWinner][1].win = 0;
       result.final[matchWinner][winnerId].win = 1;
+
     }
 
   }
@@ -314,16 +338,16 @@ function App() {
         </div>
       }
       {
-        (stage === 'round of 16') && <div className="roundOfSixteen">
-          <div className="roundOfSixteen__header"></div>
-          <div className="roundOfSixteen__content">
+        (stage === 'round of 16') && <div className="playOff">
+          <div className="playOff__header"></div>
+          <div className="playOff__content">
             {
               result.roundOf16.map((match, index) => (
                 <Match key={index} match={match} matchIndex={index} chooseWinner={chooseWinner} stage={'sexteen'} />
               ))
             }
           </div>
-          <div className="roundOfSixteen__buttons">
+          <div className="playOff__buttons">
             <button className="prevStageBtn" onClick={() => setStage('group')}>Назад</button>
             <button className="nextStageBtn" onClick={() => setStage('quarterfinals')}>Далее</button>
           </div>
@@ -331,59 +355,67 @@ function App() {
         </div>
       }
       {
-        (stage === 'quarterfinals') && <div className="quarterfinals">
-          <div className="quarterfinals__header"></div>
-          <div className="quarterfinals__content">
+        (stage === 'quarterfinals') && <div className="playOff">
+          <div className="playOff__header"></div>
+          <div className="playOff__content">
             {
               result.quarterfinals.map((match, index) => (
                 <Match key={index} match={match} matchIndex={index} chooseWinner={chooseWinner} stage={'qf'} />
               ))
             }
           </div>
-          <div className="quarterfinals__buttons">
+          <div className="playOff__buttons">
             <button className="prevStageBtn" onClick={() => setStage('round of 16')}>Назад</button>
             <button className="nextStageBtn" onClick={() => setStage('semifinals')}>Далее</button>
           </div>
-          <button onClick={printResult}>результаты</button>
+          {/* <button onClick={printResult}>результаты</button> */}
         </div>
       }
       {
-        (stage === 'semifinals') && <div className="semifinals">
-          <div className="semifinals__header"></div>
-          <div className="semifinals__content">
+        (stage === 'semifinals') && <div className="playOff">
+          <div className="playOff__header"></div>
+          <div className="playOff__content">
             {
               result.semifinals.map((match, index) => (
                 <Match key={index} match={match} matchIndex={index} chooseWinner={chooseWinner} stage={'sf'} />
               ))
             }
           </div>
-          <div className="semifinals__buttons">
+          <div className="playOff__buttons">
             <button className="prevStageBtn" onClick={() => setStage('quarterfinals')}>Назад</button>
             <button className="nextStageBtn" onClick={() => setStage('third place')}>Далее</button>
           </div>
-          <button onClick={printResult}>результаты</button>
+          {/* <button onClick={printResult}>результаты</button> */}
         </div>
       }
       {
-        (stage === 'third place') && <div className="thirdPlace">
-          <div className="thirdPlace__header"></div>
-          <div className="thirdPlace__content">
-            <Match match={result.thirdPlace} matchIndex={0} chooseWinner={chooseWinner} stage={'third'} />
+        (stage === 'third place') && <div className="playOff">
+          <div className="playOff__header"></div>
+          <div className="playOff__content">
+            {
+              result.thirdPlace.map((match, index) => (
+                <Match key={index} match={match} matchIndex={index} chooseWinner={chooseWinner} stage={'third'} />
+              ))
+            }
           </div>
-          <div className="thirdPlace__buttons">
+          <div className="playOff__buttons">
             <button className="prevStageBtn" onClick={() => setStage('semifinals')}>Назад</button>
             <button className="nextStageBtn" onClick={() => setStage('final')}>Далее</button>
           </div>
-          <button onClick={printResult}>результаты</button>
+          {/* <button onClick={printResult}>результаты</button> */}
         </div>
       }
       {
-        (stage === 'final') && <div className="final">
-          <div className="final__header"></div>
-          <div className="final__content">
-            <Match match={result.final} matchIndex={0} chooseWinner={chooseWinner} stage={'final'} />
+        (stage === 'final') && <div className="playOff">
+          <div className="fplayOff__header"></div>
+          <div className="playOff__content">
+            {
+              result.final.map((match, index) => (
+                <Match key={index} match={match} matchIndex={index} chooseWinner={chooseWinner} stage={'final'} />
+              ))
+            }
           </div>
-          <div className="final__buttons">
+          <div className="playOff__buttons">
             <button className="prevStageBtn" onClick={() => setStage('third place')}>Назад</button>
             <button className="nextStageBtn" onClick={() => setStage('toresult')}>Далее</button>
           </div>

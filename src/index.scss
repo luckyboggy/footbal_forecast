@@ -55,8 +55,17 @@ li {
   cursor: pointer;
 }
 
-.roundOfSixteen {
-  .roundOfSixteen__buttons {
+.playOff {
+  text-align: center;
+  .playOff__content {
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 1200px;
+  }
+  .playOff__buttons {
+    max-width: 400px;
     margin: auto;
     text-align: center;
     /* padding: 0 15px; */
