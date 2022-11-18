@@ -13,7 +13,9 @@ const Match = (props) => {
             <Team
               key={item.id}
               {...item}
-              onClick={() => chooseWinner(stage, matchIndex, item.id)}
+              onClick={() =>
+                chooseWinner(stage, matchIndex, item.id, matchIndex)
+              }
             />
           ))}
         </div>

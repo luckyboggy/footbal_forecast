@@ -182,7 +182,6 @@ function App() {
   ]);
 
   const [stage, setStage] = useState('group');
-  //const [stage, setStage] = useState('round of 16');
 
   const [result, setResult] = useState({
     roundOf16: [],
@@ -190,6 +189,7 @@ function App() {
     semifinals: [[{}, {}], [{}, {}]],
     thirdPlace: [[{}, {}]],
     final: [[{}, {}]],
+    winners: [{}, {}, {}]
   })
 
 
@@ -234,45 +234,54 @@ function App() {
     setResult({ ...result, semifinals: _semifinals })
   }
 
-  const toThirdPlace = () => {
-    let losers = result.semifinals.map(pair => {
-      let lose = pair.filter(i => i.win === 0);
-      return lose
-    })
-    console.log('loserssss', losers);
-    let _thirdPlace = [
-      [{ ...losers[0][0], id: 0, win: 0 }, { ...losers[1][0], id: 1, win: 0 }],
-    ]
-    console.log('losers', _thirdPlace);
-    //setResult({...result, thirdPlace: _thirdPlace });
-  }
 
   const toFinal = () => {
     let losers = result.semifinals.map(pair => {
       let lose = pair.filter(i => i.win === 0);
       return lose
     })
-    console.log('loserssss', losers);
     let _thirdPlace = [
-      [{ ...losers[0][0], id: 0, win: 0 }, { ...losers[1][0], id: 1, win: 0 }],
+      [
+        (result.semifinals[0][0].win !== result.semifinals[0][1].win) ? { ...losers[0][0], id: 0, win: 0 } : {},
+        (result.semifinals[1][0].win !== result.semifinals[1][1].win) ? { ...losers[1][0], id: 1, win: 0 } : []
+      ],
     ]
-    console.log('losers', _thirdPlace);
-    //setResult({ ...result, thirdPlace: _thirdPlace});
-
 
     let winners = result.semifinals.map(pair => {
       let win = pair.filter(i => i.win === 1);
       return win
     })
-    console.log(winners);
+
     let _final = [
       [{ ...winners[0][0], id: 0, win: 0 }, { ...winners[1][0], id: 1, win: 0 }],
     ]
-    console.log('winners', _final);
-    setResult({ ...result, final: _final, thirdPlace: _thirdPlace });
 
+    setResult({ ...result, final: _final, thirdPlace: _thirdPlace });
   }
 
+  const thirdPlaceMatch = () => {
+    let _winners = result.winners;
+    console.log(result.thirdPlace[0][0])
+    result.thirdPlace[0].forEach(item => {
+      if (item.win === 1) {
+        _winners[2] = item;
+      }
+    });
+    setResult({ ...result, winners: _winners });
+  }
+
+  const finalMatch = () => {
+    let _winners = result.winners;
+    console.log(result.final[0][0])
+    result.final[0].forEach(item => {
+      if (item.win === 1) {
+        _winners[0] = item;
+      } else {
+        _winners[1] = item;
+      }
+    });
+    setResult({ ...result, winners: _winners });
+  }
 
   const chooseWinner = (stage, matchWinner, winnerId) => {
     if (stage === 'sexteen') {
@@ -291,32 +300,26 @@ function App() {
       result.semifinals[matchWinner][0].win = 0;
       result.semifinals[matchWinner][1].win = 0;
       result.semifinals[matchWinner][winnerId].win = 1;
-      //toThirdPlace();
       toFinal();
-
     }
     if (stage === 'third') {
-
       result.thirdPlace[matchWinner][0].win = 0;
       result.thirdPlace[matchWinner][1].win = 0;
       result.thirdPlace[matchWinner][winnerId].win = 1;
-
-
+      thirdPlaceMatch();
     }
     if (stage === 'final') {
 
       result.final[matchWinner][0].win = 0;
       result.final[matchWinner][1].win = 0;
       result.final[matchWinner][winnerId].win = 1;
-
+      finalMatch();
     }
-
   }
 
   const printResult = () => {
     console.log(result);
   }
-
 
 
   return (
@@ -368,7 +371,7 @@ function App() {
             <button className="prevStageBtn" onClick={() => setStage('round of 16')}>Назад</button>
             <button className="nextStageBtn" onClick={() => setStage('semifinals')}>Далее</button>
           </div>
-          {/* <button onClick={printResult}>результаты</button> */}
+          <button onClick={printResult}>результаты</button>
         </div>
       }
       {
@@ -385,7 +388,7 @@ function App() {
             <button className="prevStageBtn" onClick={() => setStage('quarterfinals')}>Назад</button>
             <button className="nextStageBtn" onClick={() => setStage('third place')}>Далее</button>
           </div>
-          {/* <button onClick={printResult}>результаты</button> */}
+          <button onClick={printResult}>результаты</button>
         </div>
       }
       {
@@ -402,7 +405,7 @@ function App() {
             <button className="prevStageBtn" onClick={() => setStage('semifinals')}>Назад</button>
             <button className="nextStageBtn" onClick={() => setStage('final')}>Далее</button>
           </div>
-          {/* <button onClick={printResult}>результаты</button> */}
+          <button onClick={printResult}>результаты</button>
         </div>
       }
       {
