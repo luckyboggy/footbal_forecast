@@ -7,7 +7,7 @@ const Match = (props) => {
   return (
     <div>
       <div className={classes.match}>
-        <div className={classes.header}></div>
+        {/* <div className={classes.header}></div> */}
         <div className={classes.content}>
           {match.map((item) => (
             <Team

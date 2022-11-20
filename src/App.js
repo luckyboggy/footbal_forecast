@@ -321,12 +321,17 @@ function App() {
     console.log(result);
   }
 
+  const toTop = () => {
+    window.scrollTo({
+      top: 0,
+    })
+  }
 
   return (
     <div className="App">
       {
         (stage === 'group') && <div className="groupStage">
-          <div className="groupStage__header"></div>
+          <div className="groupStage__header">Групповой этап</div>
           <div className="groupStage__content">
             <Group groupName={"A"} group={groupA} setGroup={setGroupA} />
             <Group groupName={"B"} group={groupB} setGroup={setGroupB} />
@@ -337,12 +342,12 @@ function App() {
             <Group groupName={"G"} group={groupG} setGroup={setGroupG} />
             <Group groupName={"H"} group={groupH} setGroup={setGroupH} />
           </div>
-          <button className="nextStageBtn" onClick={toRoundOf16}>Далее</button>
+          <button className="nextStageBtn" onClick={() => {toRoundOf16(); toTop()}}>Далее</button>
         </div>
       }
       {
         (stage === 'round of 16') && <div className="playOff">
-          <div className="playOff__header"></div>
+          <div className="playOff__header">1/8 финала</div>
           <div className="playOff__content">
             {
               result.roundOf16.map((match, index) => (
@@ -351,15 +356,14 @@ function App() {
             }
           </div>
           <div className="playOff__buttons">
-            <button className="prevStageBtn" onClick={() => setStage('group')}>Назад</button>
-            <button className="nextStageBtn" onClick={() => setStage('quarterfinals')}>Далее</button>
+            <button className="prevStageBtn" onClick={() => {setStage('group'); toTop()}}>Назад</button>
+            <button className="nextStageBtn" onClick={() => {setStage('quarterfinals'); toTop()}}>Далее</button>
           </div>
-          <button onClick={printResult}>результаты</button>
         </div>
       }
       {
         (stage === 'quarterfinals') && <div className="playOff">
-          <div className="playOff__header"></div>
+          <div className="playOff__header">Четвертьфиналы</div>
           <div className="playOff__content">
             {
               result.quarterfinals.map((match, index) => (
@@ -368,15 +372,14 @@ function App() {
             }
           </div>
           <div className="playOff__buttons">
-            <button className="prevStageBtn" onClick={() => setStage('round of 16')}>Назад</button>
-            <button className="nextStageBtn" onClick={() => setStage('semifinals')}>Далее</button>
+            <button className="prevStageBtn" onClick={() => {setStage('round of 16'); toTop()}}>Назад</button>
+            <button className="nextStageBtn" onClick={() => {setStage('semifinals'); toTop()}}>Далее</button>
           </div>
-          <button onClick={printResult}>результаты</button>
         </div>
       }
       {
         (stage === 'semifinals') && <div className="playOff">
-          <div className="playOff__header"></div>
+          <div className="playOff__header">Полуфиналы</div>
           <div className="playOff__content">
             {
               result.semifinals.map((match, index) => (
@@ -385,15 +388,14 @@ function App() {
             }
           </div>
           <div className="playOff__buttons">
-            <button className="prevStageBtn" onClick={() => setStage('quarterfinals')}>Назад</button>
-            <button className="nextStageBtn" onClick={() => setStage('third place')}>Далее</button>
+            <button className="prevStageBtn" onClick={() => {setStage('quarterfinals'); toTop()}}>Назад</button>
+            <button className="nextStageBtn" onClick={() => {setStage('third place'); toTop()}}>Далее</button>
           </div>
-          <button onClick={printResult}>результаты</button>
         </div>
       }
       {
         (stage === 'third place') && <div className="playOff">
-          <div className="playOff__header"></div>
+          <div className="playOff__header">Матч за 3 место</div>
           <div className="playOff__content">
             {
               result.thirdPlace.map((match, index) => (
@@ -402,15 +404,14 @@ function App() {
             }
           </div>
           <div className="playOff__buttons">
-            <button className="prevStageBtn" onClick={() => setStage('semifinals')}>Назад</button>
-            <button className="nextStageBtn" onClick={() => setStage('final')}>Далее</button>
+            <button className="prevStageBtn" onClick={() => {setStage('semifinals'); toTop()}}>Назад</button>
+            <button className="nextStageBtn" onClick={() => {setStage('final'); toTop()}}>Далее</button>
           </div>
-          <button onClick={printResult}>результаты</button>
         </div>
       }
       {
         (stage === 'final') && <div className="playOff">
-          <div className="fplayOff__header"></div>
+          <div className="playOff__header">Финал</div>
           <div className="playOff__content">
             {
               result.final.map((match, index) => (
@@ -419,10 +420,23 @@ function App() {
             }
           </div>
           <div className="playOff__buttons">
-            <button className="prevStageBtn" onClick={() => setStage('third place')}>Назад</button>
-            <button className="nextStageBtn" onClick={() => setStage('toresult')}>Далее</button>
+            <button className="prevStageBtn" onClick={() => {setStage('third place'); toTop()}}>Назад</button>
+            <button className="nextStageBtn" onClick={() => {setStage('results'); toTop()}}>Результаты</button>
           </div>
-          <button onClick={printResult}>результаты</button>
+          {/* <button onClick={printResult}>результаты</button> */}
+        </div>
+      }
+      {
+        (stage === 'results') && <div className="playOff">
+          <div className="results__header">Результаты</div>
+          <div className="results__content">
+
+          </div>
+          <div className="results__buttons">
+            <button className="prevStageBtn" onClick={() => {setStage('group'); toTop()}}>Заново</button>
+            <button className="nextStageBtn" onClick={() => {setStage('result'); toTop()}}>Результаты</button>
+          </div>
+          {/* <button onClick={printResult}>результаты</button> */}
         </div>
       }
 

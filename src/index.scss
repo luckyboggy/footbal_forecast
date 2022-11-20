@@ -1,7 +1,8 @@
 $backColor: darkslateblue;
+$groupBackColor: beige;
 $groupTitleColor: crimson;
-$groupTitleTextColor: white;
-$prevStageBtn: #gray;
+$groupTitleTextColor: #ffffff;
+$prevStageBtn: grey;
 
 * {
   margin: 0;
@@ -20,17 +21,36 @@ li {
 
 .groupStage {
   text-align: center;
+  width: 100%;
+  margin: 0;
+  .groupStage__header {
+    background-color: $groupTitleColor;
+    color: $groupTitleTextColor;
+    font-size: 2rem;
+    padding: 0.5rem;
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.5);
+  }
   .groupStage__content {
-    margin: auto;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    max-width: 1200px;
+    min-height: calc(100vh - 81px - 55px);
+    @media screen and (min-width: 768px) {
+      width: 700px;
+      margin: auto;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+    @media screen and (min-width: 1200px) {
+      min-width: 1100px;
+      width: 80%;
+      max-width: 1200px;
+    }
   }
 }
 
 .nextStageBtn {
   width: 48%;
+  max-width: 200px;
   margin: 10px auto;
   padding: 1rem 0.5rem;
   border-radius: 10px;
@@ -49,7 +69,7 @@ li {
   border-radius: 10px;
   text-align: center;
   background-color: $prevStageBtn;
-  color: #black;
+  color: black;
   border: 0;
   font-size: 1.5rem;
   cursor: pointer;
@@ -57,17 +77,37 @@ li {
 
 .playOff {
   text-align: center;
+  width: 100%;
+  margin: 0;
+  .playOff__header {
+    background-color: $groupTitleColor;
+    color: $groupTitleTextColor;
+    font-size: 2rem;
+    padding: 0.5rem;
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.5);
+  }
   .playOff__content {
-    margin: auto;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    max-width: 1200px;
+    min-height: calc(100vh - 81px - 55px);
+    @media screen and (min-width: 768px) {
+      width: 700px;
+      margin: auto;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+    @media screen and (min-width: 1200px) {
+      min-width: 1100px;
+      width: 80%;
+      max-width: 1200px;
+    }
   }
   .playOff__buttons {
     max-width: 400px;
     margin: auto;
     text-align: center;
-    /* padding: 0 15px; */
   }
+}
+
+@media (min-width: 768px) {
 }
