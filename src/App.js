@@ -191,7 +191,7 @@ function App() {
     semifinals: [[{}, {}], [{}, {}]],
     thirdPlace: [[{}, {}]],
     final: [[{}, {}]],
-    winners: [{}, {}, {}]
+    winners: [{}, {}, {}, {}]
   });
 
   const [resultShow, setResultShow] = useState(false);
@@ -312,6 +312,8 @@ function App() {
     result.thirdPlace[0].forEach(item => {
       if (item.win === 1) {
         _winners[2] = item;
+      } else {
+        _winners[3] = item;
       }
     });
     setResult({ ...result, winners: _winners });
@@ -483,17 +485,18 @@ function App() {
           <div className="results__content">
             <div className="result__winner">
               <h3>Твой фаворит:</h3>
-              <img src={result.winners[0].flag} alt={""} />
+              <img src={result.winners[0].flag} className={'winner_flag'} alt={""} />
               <h3>{result.winners[0].team}</h3>
             </div>
             <div className="results__full">
-              <button className="showFull_btn" onClick={() => setResultShow(!resultShow)}>
-                {!resultShow && <p>полные результаты</p>}
-                {resultShow && <p>свернуть</p>}
-              </button>
+              <p>полные результаты</p>
               {
                 resultShow && <Full result={result} />
               }
+              <button className="showFull_btn" onClick={() => setResultShow(!resultShow)}>
+                {resultShow && <img className="showFull_icon" src={'https://cdn-icons-png.flaticon.com/512/992/992703.png'} alt={""} />}
+                {!resultShow && <img className="showFull_icon" src={'https://cdn-icons-png.flaticon.com/512/2985/2985151.png'} alt={""} />}
+              </button>
             </div>
 
           </div>

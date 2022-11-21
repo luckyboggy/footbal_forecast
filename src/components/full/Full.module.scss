@@ -5,13 +5,15 @@ $groupTitleTextColor: #ffffff;
 $prevStageBtn: grey;
 
 .fullResult {
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   display: flex;
   flex-direction: row;
+  margin: 10px 0;
+  background-color: rgba(0, 0, 0, 0.15);
+  padding: 1rem 0;
 
   .stage {
     width: 25%;
-    border: 1px solid white;
   }
 
   .match_16 {
@@ -26,16 +28,22 @@ $prevStageBtn: grey;
   .match_qf {
     background-color: $groupBackColor;
     color: black;
-    margin: 35px 10px 70px;
+    margin: 35px 10px 0;
     padding: 0;
     background-color: transparent;
+    &:not(:last-child) {
+      margin-bottom: 70px;
+    }
   }
   .match_sf {
     background-color: $groupBackColor;
     color: black;
-    margin: 100px 10px 200px;
+    margin: 100px 10px 0;
     padding: 0;
     background-color: transparent;
+    &:not(:last-child) {
+      margin-bottom: 200px;
+    }
   }
   .match_final {
     background-color: $groupBackColor;
@@ -62,7 +70,7 @@ $prevStageBtn: grey;
     .team__flag {
       position: absolute;
       left: 3px;
-      top: 3px;
+      top: 2px;
       height: 24px;
       width: 25px;
       border: 1px solid $prevStageBtn;
@@ -81,6 +89,24 @@ $prevStageBtn: grey;
   .teamWinner {
     border: 1px solid rgb(134, 230, 134);
     background-color: rgba(211, 248, 211);
+    font-weight: bold;
+  }
+
+  .teamGold {
+    border: 1px solid rgb(160, 136, 2);
+    background-color: gold;
+    font-weight: bold;
+  }
+
+  .teamSilver {
+    border: 1px solid rgb(81, 81, 81);
+    background-color: silver;
+    font-weight: bold;
+  }
+
+  .teamBronze {
+    border: 1px solid rgb(167, 103, 0);
+    background-color: rgb(255, 157, 0);
     font-weight: bold;
   }
 }
