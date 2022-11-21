@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Footer from "./components/Footer";
+import Full from "./components/full/Full";
 import Group from "./components/group/Group";
 import Match from "./components/match/Match";
 
@@ -190,7 +192,52 @@ function App() {
     thirdPlace: [[{}, {}]],
     final: [[{}, {}]],
     winners: [{}, {}, {}]
-  })
+  });
+
+  const [resultShow, setResultShow] = useState(false);
+
+  const [data, setData] = useState([])
+
+  const url = 'https://jsonplaceholder.typicode.com/todos/';
+
+  // get api
+  /* useEffect(() => {
+    fetch(url)
+      .then(response => response.json())
+      .then(json => {
+        console.log(json);
+        setData(json);
+        console.log(data);
+      })
+      .catch(err => {
+        console.log('err', err)
+      })
+
+  }, []); */
+
+  // post and put api
+  const postResult = () => {
+    const data = {
+      id: Date.now(),
+      name: 'Bogdan',
+      mobile: '12123432'
+    }
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      },
+      body: JSON.stringify(data)
+    })
+      .then(response => {
+        console.log('response', response)
+      })
+      .catch(err => {
+        console.log('err', err)
+      })
+  }
+
 
 
   const toRoundOf16 = () => {
@@ -317,6 +364,10 @@ function App() {
     }
   }
 
+  const checkAllWinners = () => {
+
+  }
+
   const printResult = () => {
     console.log(result);
   }
@@ -342,7 +393,7 @@ function App() {
             <Group groupName={"G"} group={groupG} setGroup={setGroupG} />
             <Group groupName={"H"} group={groupH} setGroup={setGroupH} />
           </div>
-          <button className="nextStageBtn" onClick={() => {toRoundOf16(); toTop()}}>Далее</button>
+          <button className="nextStageBtn" onClick={() => { toRoundOf16(); toTop() }}>Далее</button>
         </div>
       }
       {
@@ -356,8 +407,8 @@ function App() {
             }
           </div>
           <div className="playOff__buttons">
-            <button className="prevStageBtn" onClick={() => {setStage('group'); toTop()}}>Назад</button>
-            <button className="nextStageBtn" onClick={() => {setStage('quarterfinals'); toTop()}}>Далее</button>
+            <button className="prevStageBtn" onClick={() => { setStage('group'); toTop() }}>Назад</button>
+            <button className="nextStageBtn" onClick={() => { setStage('quarterfinals'); toTop() }}>Далее</button>
           </div>
         </div>
       }
@@ -372,8 +423,8 @@ function App() {
             }
           </div>
           <div className="playOff__buttons">
-            <button className="prevStageBtn" onClick={() => {setStage('round of 16'); toTop()}}>Назад</button>
-            <button className="nextStageBtn" onClick={() => {setStage('semifinals'); toTop()}}>Далее</button>
+            <button className="prevStageBtn" onClick={() => { setStage('round of 16'); toTop() }}>Назад</button>
+            <button className="nextStageBtn" onClick={() => { setStage('semifinals'); toTop() }}>Далее</button>
           </div>
         </div>
       }
@@ -388,8 +439,8 @@ function App() {
             }
           </div>
           <div className="playOff__buttons">
-            <button className="prevStageBtn" onClick={() => {setStage('quarterfinals'); toTop()}}>Назад</button>
-            <button className="nextStageBtn" onClick={() => {setStage('third place'); toTop()}}>Далее</button>
+            <button className="prevStageBtn" onClick={() => { setStage('quarterfinals'); toTop() }}>Назад</button>
+            <button className="nextStageBtn" onClick={() => { setStage('third place'); toTop() }}>Далее</button>
           </div>
         </div>
       }
@@ -404,8 +455,8 @@ function App() {
             }
           </div>
           <div className="playOff__buttons">
-            <button className="prevStageBtn" onClick={() => {setStage('semifinals'); toTop()}}>Назад</button>
-            <button className="nextStageBtn" onClick={() => {setStage('final'); toTop()}}>Далее</button>
+            <button className="prevStageBtn" onClick={() => { setStage('semifinals'); toTop() }}>Назад</button>
+            <button className="nextStageBtn" onClick={() => { setStage('final'); toTop() }}>Далее</button>
           </div>
         </div>
       }
@@ -420,25 +471,41 @@ function App() {
             }
           </div>
           <div className="playOff__buttons">
-            <button className="prevStageBtn" onClick={() => {setStage('third place'); toTop()}}>Назад</button>
-            <button className="nextStageBtn" onClick={() => {setStage('results'); toTop()}}>Результаты</button>
+            <button className="prevStageBtn" onClick={() => { setStage('third place'); toTop() }}>Назад</button>
+            <button className="nextStageBtn" onClick={() => { setStage('results'); toTop() }}>Результаты</button>
           </div>
           {/* <button onClick={printResult}>результаты</button> */}
         </div>
       }
       {
-        (stage === 'results') && <div className="playOff">
+        (stage === 'results') && <div className="results">
           <div className="results__header">Результаты</div>
           <div className="results__content">
+            <div className="result__winner">
+              <h3>Твой фаворит:</h3>
+              <img src={result.winners[0].flag} alt={""} />
+              <h3>{result.winners[0].team}</h3>
+            </div>
+            <div className="results__full">
+              <button className="showFull_btn" onClick={() => setResultShow(!resultShow)}>
+                {!resultShow && <p>полные результаты</p>}
+                {resultShow && <p>свернуть</p>}
+              </button>
+              {
+                resultShow && <Full result={result} />
+              }
+            </div>
 
           </div>
           <div className="results__buttons">
-            <button className="prevStageBtn" onClick={() => {setStage('group'); toTop()}}>Заново</button>
-            <button className="nextStageBtn" onClick={() => {setStage('result'); toTop()}}>Результаты</button>
+            <button className="results_btn" onClick={() => { setStage('result'); toTop() }}>Сохранить</button>
+            <button className="results_btn" onClick={() => { setStage('group'); toTop() }}>Заново</button>
+
           </div>
           {/* <button onClick={printResult}>результаты</button> */}
         </div>
       }
+      <Footer />
 
     </div >
   );

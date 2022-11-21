@@ -19,6 +19,21 @@ li {
   list-style-type: none;
 }
 
+footer {
+  padding: 0 1rem;
+  background-color: #00000050;
+  color: $groupBackColor;
+  margin-top: 10px;
+  .footer__wrapper {
+    height: 100%;
+    text-align: center;
+    padding: 1rem;
+    .footer__copyright {
+      font-size: 0.75rem;
+    }
+  }
+}
+
 .groupStage {
   text-align: center;
   width: 100%;
@@ -109,5 +124,69 @@ li {
   }
 }
 
-@media (min-width: 768px) {
+.results {
+  text-align: center;
+  width: 100%;
+  margin: 0;
+  color: $groupTitleTextColor;
+  font-size: 1.5rem;
+  .results__header {
+    background-color: $groupTitleColor;
+    color: $groupTitleTextColor;
+    font-size: 2rem;
+    padding: 0.5rem;
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.5);
+  }
+  .results__content {
+    min-height: calc(100vh - 81px - 162px);
+    .result__winner {
+      margin: 10px;
+    }
+    img {
+      margin: 10px;
+      width: 200px;
+      height: 200px;
+      border-radius: 100px;
+      border: 4px solid gold;
+      box-shadow: 0px 0px 15px black;
+    }
+    @media screen and (min-width: 768px) {
+      width: 700px;
+      margin: auto;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+    @media screen and (min-width: 1200px) {
+      min-width: 1100px;
+      width: 80%;
+      max-width: 1200px;
+    }
+  }
+  .results__buttons {
+    display: block;
+    max-width: 400px;
+    margin: auto;
+    text-align: center;
+    .results_btn {
+      width: 60%;
+      margin: 10px auto;
+      padding: 1rem 0.5rem;
+      border-radius: 10px;
+      text-align: center;
+      background-color: $groupTitleColor;
+      color: $groupTitleTextColor;
+      border: 0;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+  }
+  .showFull_btn {
+    background-color: transparent;
+    border: none;
+    font-size: 1rem;
+    color: aliceblue;
+    margin-bottom: 10px;
+  }
 }

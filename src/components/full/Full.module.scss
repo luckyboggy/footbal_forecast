@@ -1,0 +1,86 @@
+$backColor: darkslateblue;
+$groupBackColor: beige;
+$groupTitleColor: crimson;
+$groupTitleTextColor: #ffffff;
+$prevStageBtn: grey;
+
+.fullResult {
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: row;
+
+  .stage {
+    width: 25%;
+    border: 1px solid white;
+  }
+
+  .match_16 {
+    background-color: $groupBackColor;
+    color: black;
+    margin: 5px 10px;
+    padding: 0;
+    border-radius: 5px;
+    background-color: transparent;
+  }
+
+  .match_qf {
+    background-color: $groupBackColor;
+    color: black;
+    margin: 35px 10px 70px;
+    padding: 0;
+    background-color: transparent;
+  }
+  .match_sf {
+    background-color: $groupBackColor;
+    color: black;
+    margin: 100px 10px 200px;
+    padding: 0;
+    background-color: transparent;
+  }
+  .match_final {
+    background-color: $groupBackColor;
+    color: black;
+    margin: 230px 10px 0;
+    padding: 0;
+    background-color: transparent;
+  }
+  .match_third {
+    background-color: $groupBackColor;
+    color: black;
+    margin: 170px 10px 0;
+    padding: 0;
+    background-color: transparent;
+  }
+
+  .team {
+    position: relative;
+    height: 30px;
+    border: 1px solid $prevStageBtn;
+    align-items: center;
+    border-radius: 8px;
+    background-color: $groupBackColor;
+    .team__flag {
+      position: absolute;
+      left: 3px;
+      top: 3px;
+      height: 24px;
+      width: 25px;
+      border: 1px solid $prevStageBtn;
+      border-radius: 10px;
+      box-shadow: none;
+      padding: 0;
+      margin: auto;
+    }
+    .team__name {
+      position: absolute;
+      font-size: 1.2rem;
+      right: 0.3rem;
+      top: 3px;
+    }
+  }
+  .teamWinner {
+    border: 1px solid rgb(134, 230, 134);
+    background-color: rgba(211, 248, 211);
+    font-weight: bold;
+  }
+}
