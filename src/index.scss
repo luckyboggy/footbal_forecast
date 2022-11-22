@@ -169,8 +169,37 @@ footer {
   }
   .results__content {
     min-height: calc(100vh - 81px - 162px - 46px);
+    @media screen and (min-width: 768px) {
+      width: 700px;
+      margin: auto;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+    @media screen and (min-width: 1200px) {
+      min-width: 1100px;
+      width: 80%;
+      max-width: 1200px;
+    }
+
+
     .result__winner {
       margin: 10px;
+      @media screen and (min-width: 1200px) {
+
+        margin-top: 5rem;
+      }
+    }
+
+    .results__full{
+      @media screen and (min-width: 768px) {
+        width: 75%;
+      }
+      @media screen and (min-width: 1200px) {
+        width: 50%;
+        margin-top: 1rem;
+      }
     }
     .winner_flag {
       margin: 10px;

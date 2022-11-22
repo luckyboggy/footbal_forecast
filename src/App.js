@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Footer from "./components/Footer";
 import Full from "./components/full/Full";
 import Group from "./components/group/Group";
@@ -196,47 +196,9 @@ function App() {
 
   const [resultShow, setResultShow] = useState(false);
 
-  const [data, setData] = useState([])
 
-  const url = 'https://jsonplaceholder.typicode.com/todos/';
+  let widthScreen = window.innerWidth
 
-  // get api
-  /* useEffect(() => {
-    fetch(url)
-      .then(response => response.json())
-      .then(json => {
-        console.log(json);
-        setData(json);
-        console.log(data);
-      })
-      .catch(err => {
-        console.log('err', err)
-      })
-
-  }, []); */
-
-  // post and put api
-  const postResult = () => {
-    const data = {
-      id: Date.now(),
-      name: 'Bogdan',
-      mobile: '12123432'
-    }
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      },
-      body: JSON.stringify(data)
-    })
-      .then(response => {
-        console.log('response', response)
-      })
-      .catch(err => {
-        console.log('err', err)
-      })
-  }
 
 
 
@@ -253,6 +215,7 @@ function App() {
     ];
     setResult({ ...result, roundOf16: _roundOf16 });
     setStage('round of 16');
+
   }
 
   const toQuarterfinals = () => {
@@ -373,18 +336,12 @@ function App() {
         }
       })
     });
-    console.log(countWin);
-    console.log(arr.length);
-
     if (countWin === arr.length) {
       return true;
     }
     return false;
   }
 
-  const printResult = () => {
-    console.log(result);
-  }
 
   const toTop = () => {
     window.scrollTo({
@@ -397,6 +354,7 @@ function App() {
       {
         (stage === 'group') && <div className="groupStage">
           <div className="groupStage__header">Групповой этап</div>
+
           <div className="groupStage__content">
             <Group groupName={"A"} group={groupA} setGroup={setGroupA} />
             <Group groupName={"B"} group={groupB} setGroup={setGroupB} />
@@ -528,12 +486,18 @@ function App() {
             <div className="results__full">
               <p>полные результаты</p>
               {
-                resultShow && <Full result={result} />
+                (widthScreen > 1199) ? <Full result={result} />
+                  : <div>
+                    {
+                      resultShow && <Full result={result} />
+                    }
+                    <button className="showFull_btn" onClick={() => setResultShow(!resultShow)}>
+                      {resultShow && <img className="showFull_icon" src={'https://cdn-icons-png.flaticon.com/512/992/992703.png'} alt={""} />}
+                      {!resultShow && <img className="showFull_icon" src={'https://cdn-icons-png.flaticon.com/512/2985/2985151.png'} alt={""} />}
+                    </button>
+                  </div>
               }
-              <button className="showFull_btn" onClick={() => setResultShow(!resultShow)}>
-                {resultShow && <img className="showFull_icon" src={'https://cdn-icons-png.flaticon.com/512/992/992703.png'} alt={""} />}
-                {!resultShow && <img className="showFull_icon" src={'https://cdn-icons-png.flaticon.com/512/2985/2985151.png'} alt={""} />}
-              </button>
+
             </div>
 
           </div>
