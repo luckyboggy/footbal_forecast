@@ -1,6 +1,7 @@
 $backColor: darkslateblue;
 $groupBackColor: beige;
 $groupTitleColor: crimson;
+$fakeButtonColor: #d3a8b1;
 $groupTitleTextColor: #ffffff;
 $prevStageBtn: grey;
 
@@ -37,6 +38,7 @@ footer {
 .groupStage {
   text-align: center;
   width: 100%;
+  min-height: calc(100vh - 46px);
   margin: 0;
   .groupStage__header {
     background-color: $groupTitleColor;
@@ -46,7 +48,7 @@ footer {
     box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.5);
   }
   .groupStage__content {
-    min-height: calc(100vh - 81px - 55px);
+    min-height: calc(100vh - 81px - 55px - 46px);
     @media screen and (min-width: 768px) {
       width: 700px;
       margin: auto;
@@ -64,7 +66,8 @@ footer {
 }
 
 .nextStageBtn {
-  width: 48%;
+  width: 170px;
+  height: 60px;
   max-width: 200px;
   margin: 10px auto;
   padding: 1rem 0.5rem;
@@ -78,7 +81,9 @@ footer {
 }
 
 .prevStageBtn {
-  width: 45%;
+  width: 170px;
+  height: 60px;
+  max-width: 200px;
   margin: 10px auto;
   padding: 1rem 0.5rem;
   border-radius: 10px;
@@ -90,9 +95,26 @@ footer {
   cursor: pointer;
 }
 
+.fakeBtn {
+  width: 170px;
+  height: 60px;
+  max-width: 200px;
+  margin: 10px auto;
+  padding: 1rem 0.5rem;
+  border-radius: 10px;
+  background-color: $fakeButtonColor;
+  color: black;
+  border: 0;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  border: 2px solid $groupTitleColor;
+}
+
 .playOff {
   text-align: center;
   width: 100%;
+  min-height: calc(100vh - 46px);
   margin: 0;
   .playOff__header {
     background-color: $groupTitleColor;
@@ -102,7 +124,7 @@ footer {
     box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.5);
   }
   .playOff__content {
-    min-height: calc(100vh - 81px - 55px);
+    min-height: calc(100vh - 81px - 55px - 46px);
     @media screen and (min-width: 768px) {
       width: 700px;
       margin: auto;
@@ -118,9 +140,10 @@ footer {
     }
   }
   .playOff__buttons {
+    display: flex;
     max-width: 400px;
-    margin: auto;
-    text-align: center;
+    margin: 0 auto;
+    justify-content: space-around;
   }
 }
 
@@ -130,6 +153,7 @@ footer {
   margin: 0;
   color: $groupTitleTextColor;
   font-size: 1.5rem;
+  min-height: calc(100vh - 46px);
   .showFull_icon {
     height: 20px;
     width: 20px;
@@ -144,7 +168,7 @@ footer {
     box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.5);
   }
   .results__content {
-    min-height: calc(100vh - 81px - 162px);
+    min-height: calc(100vh - 81px - 162px - 46px);
     .result__winner {
       margin: 10px;
     }
